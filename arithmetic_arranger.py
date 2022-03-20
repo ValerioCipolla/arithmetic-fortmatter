@@ -53,6 +53,16 @@ def arithmetic_arranger(problems, answer=False):
         len_difference = operand_two_length - operand_one_length
         while len_difference < 0:
             bottom_row = bottom_row + " "
-            len_difference + 1
-        
-    return 1
+            len_difference = len_difference + 1
+        bottom_row = bottom_row + " " + operand_two + "    "
+    bottom_row = bottom_row + "\n"
+    #buil dashes
+    dashes = ""
+    for length in max_length_list:
+        while length + 2 > 0:
+            dashes = dashes + "-"
+            length = length - 1
+        dashes = dashes + "    "
+    all = top_row + bottom_row + dashes
+    print(all)
+    return all
