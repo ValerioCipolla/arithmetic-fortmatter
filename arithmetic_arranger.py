@@ -59,6 +59,29 @@ def arithmetic_arranger(problems, answer=False):
             dashes = dashes + "-"
             length = length - 1
         dashes = dashes + "    "
-    all = top_row + bottom_row + dashes.rstrip()
-    print(all)
-    return all
+    no_answer_solution = top_row + bottom_row + dashes.rstrip()
+
+    # if answer is needed buil answer row
+    with_answer_solution = no_answer_solution + "\n"
+    index = 0
+    for problem in problems:
+        operand_one = int(problem.split()[0])
+        operator = problem.split()[1]
+        operand_two = int(problem.split()[2])
+        if operator == "+":
+            solution = operand_one + operand_two
+        elif operator == "-":
+            solution = operand_one - operand_two
+        solution_length = len(str(solution))
+        number_of_dashes = max_length_list[index] + 2
+        index = index + 1
+        while number_of_dashes > solution_length:
+            with_answer_solution = with_answer_solution + " "
+            number_of_dashes = number_of_dashes - 1
+        with_answer_solution = with_answer_solution + str(solution) + "    "
+    with_answer_solution = with_answer_solution.rstrip()
+
+    if answer is False:
+        return no_answer_solution
+    else:
+        return with_answer_solution
