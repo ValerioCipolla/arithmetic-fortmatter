@@ -24,7 +24,6 @@ def arithmetic_arranger(problems, answer=False):
     
     #build top row
     top_row = "  "
-    index = 0
     for problem in problems: 
         operand_one = problem.split()[0]
         operand_two = problem.split()[2]
@@ -34,15 +33,11 @@ def arithmetic_arranger(problems, answer=False):
         while len_difference < 0:
             top_row = top_row + " "
             len_difference = len_difference + 1
-        top_row = top_row + operand_one
-        if index < len(problems) - 1:
-            top_row = top_row + "      "
-        else:
-            top_row = top_row + "\n"
-        index = index + 1
+        top_row = top_row + operand_one + "      "
+    top_row = top_row.rstrip() + "\n"
+
     #build bottom row
     bottom_row = ""
-    index = 0
     for problem in problems:
         operand_one = problem.split()[0]
         operator = problem.split()[1]
@@ -55,7 +50,8 @@ def arithmetic_arranger(problems, answer=False):
             bottom_row = bottom_row + " "
             len_difference = len_difference + 1
         bottom_row = bottom_row + " " + operand_two + "    "
-    bottom_row = bottom_row + "\n"
+    bottom_row = bottom_row.rstrip() + "\n"
+    
     #buil dashes
     dashes = ""
     for length in max_length_list:
@@ -63,6 +59,6 @@ def arithmetic_arranger(problems, answer=False):
             dashes = dashes + "-"
             length = length - 1
         dashes = dashes + "    "
-    all = top_row + bottom_row + dashes
+    all = top_row + bottom_row + dashes.rstrip()
     print(all)
     return all
